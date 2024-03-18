@@ -63,7 +63,7 @@ Cleaned dataframe:
 
 With the dataset adequately cleaned, we can now move onto exploratory data analysis and observe interesting aggregates.
 
-# Univariate Analysis
+### Univariate Analysis
 
 We can first view the distribution of calories.
 
@@ -75,7 +75,7 @@ The distribution has a very apparent right skew, meaning most recipes have lower
 
 Now, we can observe that most recipes have between 100 and 500 calories. The distribution is still skewed right for the most part, but we have a better picture of where the recipes fall in terms of their calorie amounts.
 
-# Bivariate Analysis
+### Bivariate Analysis
 
 To address our initial question of the relationship between # of steps and calories, we can plot those columns in a scatter plot and use an OLS trendline to see the relationship.
 
@@ -87,33 +87,108 @@ Let's create a boolean column called "diet" that categorizes recipes as diet (<=
 
 [graph]
 
-# Interesting Aggregates
+### Interesting Aggregates
 
-We can also extract protein from the "nutrition" column and then similarly break it down into bins if we wanted to observe the relationship between protein and calories. Then, we can create a pivot table to see how number of steps changes as binned protein and calories change.
+We can also extract protein from the "nutrition" column and then similarly break it down into bins if we wanted to observe the relationship between protein and calories. Then, we can create a pivot table to see how number of steps changes as binned protein and calories change. Note that the column labels are the protein bins.
 
-[pivot table]
+| binned_calories   |   (-0.001, 10.0] |   (10.0, 25.0] |   (25.0, 50.0] |   (50.0, 100.0] |   (100.0, 1100.0] |
+|:------------------|-----------------:|---------------:|---------------:|----------------:|------------------:|
+| (0.999, 100.0]    |          7.57217 |        8.37336 |        7.65789 |        nan      |         nan       |
+| (100.0, 500.0]    |          9.32652 |        9.90256 |       10.1662  |         10.2999 |           9.81844 |
+| (500.0, 1000.0]   |          9.71954 |       12.8419  |       11.4682  |         12.1734 |          11.9142  |
+| (1000.0, 2500.0]  |          6.11957 |       12.2739  |       12.1356  |         12.8682 |          13.1699  |
+| (2500.0, 5000.0]  |          7.85714 |       10.7     |       11.5263  |         11.5299 |          12.5783  |
 
 We can observe the average number of steps needed for each bin of calories and protein. In some columns, it appears that the average # of steps starts to increase, peaks, and then decreases as calories increase (for example, the (10.0, 25.0] protein column). Other columns like (25.0, 50.0] protein display expected behavior overall; as calories increase, average # of ingredients generally increases, which makes logical sense. Finally, looking at the diagonal (top left to bottom right), we can see a similiar trend of increase step count. Higher caloric recipes typically mean larger recipes, which generally lead to more steps being involved.
 
-I also created a pivot table to analyze how mean calorie amount changed as the # of steps in a recipe increased, among the diet and non-diet recipes. The non-diet recipes always had more calories on average--as expected, but it is interesting to note that there a generally increasing trend within the diet foods. As # of steps increases, the calories also increase, which makes sense. However, within non-diet foods, there doesn't appear to be an observable trend in calories as steps increases.
+I also created a pivot table to analyze how mean calorie amount changed as the # of steps in a recipe increased, among the diet and non-diet recipes (diet=True, non-diet=False). 
+
+|   n_steps |    False |    True |
+|----------:|---------:|--------:|
+|         1 | 1045.22  | 164.441 |
+|         2 | 1042.34  | 180.446 |
+|         3 |  979.002 | 190.733 |
+|         4 |  915.199 | 210.511 |
+|         5 |  922.581 | 226.23  |
+
+The non-diet recipes always had more calories on average--as expected, but it is interesting to note that there a generally increasing trend within the diet foods. As # of steps increases, the calories also increase, which makes sense, considering those recipes might be more complicated due to the amount of food being prepared. However, within non-diet foods, it actually appears to have the oppiste effect: as # of steps increases, calories seem to decrease.
 
 ---
 
 ## Assessment of Missingness
 
-blah
+In the merged dataframe, we can see that description is sometimes missing. From an NMAR perspective, this missingness can be viewed as the recipe itself is very self-explanatory or simple, and thus doesn't need a description to elaborate on what the recipe is. If we wanted additional data to make the missingness MAR, we could collect data on a type of metric that measures commonness/straightforwardness of each recipe (for example, a standard cheeseburger scoring a 1 vs. Carribean white sea urchin ceviche scoring a 10).
+
+From existing columns, however, we can test the missingness of description on a column like "n_ingredients", or the # of ingredients. We can compare the distributions of # of ingredients when description is missing or present.
+
+[graph]
+
+Because the two distributions *roughly* have similiar shapes, we can use differences of means as the test statistic.
+
+Null hypothesis: The mean number of ingredients in recipes with their description present is the same as the mean number of ingredients in recipes with their description missing.
+
+Alternative hypothesis: The mean number of ingredients in recipes with their description present is more than the mean number of ingredients in recipes with their description missing.
+
+Test statistic: The mean number of ingredients in recipes with their description present minus the mean number of ingredients in recipes with their description missing. (differences in mean)
+
+Using a permutation test to shuffle the missingness of the description column 1000 times and simulate test statistics under the null, we can view the distribution of the simulated statistics and compare our observed statistic with it to find the p-value.
+
+[graph]
+
+As shown, we get a p-value of 0, so we reject the null hypothesis that there is no difference between the mean # of ingredients between description missing and present. Thus, we can conclude that missingness of description is MAR dependent on the "n_ingredients" column.
+
+We can also test the missingenss of description on "n_steps", or number of steps in the recipe. We can view the distribution of # of steps when description is missing or present.
+
+[graph]
+
+Again, we can use differences of means as our test statistic.
+
+Null hypothesis: The mean number of steps in recipes with their description missing is the same as the mean number of steps in recipes with their description present.
+
+Alternative hypothesis: The mean number of steps in recipes with their description missing is more than the mean number of steps in recipes with their description present.
+
+Test statistic: The mean number of steps in recipes with their description missing minus the mean number of steps in recipes with their description present. (differences in mean)
+
+Again, using a permutation test to shuffle the missingness of the description column 1000 times and simulate test statistics under the null, we can view the distribution of the simulated statistics and compare our observed statistic with it to find the p-value.
+
+
+[graph]
+
+As shown, we get a p-value of []. Using the standard cutoff of 0.05, we fail to reject the null hypothesis that there is a significant difference between the mean number of steps in recipes with their descriptions missing and the mean number of steps in recipes with their descriptions present. As such, we cannot conclude that the missingness of description is MAR dependent on the "n_steps" column.
 
 ---
 
 ## Hypothesis Testing
 
-blah
+It appears that non-diet recipes have on average more ingredients, which could be as expected, as one could hypothesize that more less calorie-dense foods are easier to make with less ingredients. Is this difference actually significant, or is it just by chance? Again, diet recipes are defined as having less than or equal to 500 calories, and non-diet recipes have more than 500 calories. This information is stored in the "diet" column.
+
+Null hypothesis: There is no difference between the average number of ingredients in diet recipes than the average number of ingredients in non-diet recipes.
+
+Alternative hypothesis: Non-diet recipes have on average more ingredients than diet recipes.
+
+Test statistic: The average number of ingredients in non-diet recipes minus the average number of ingredients in diet recipes. (difference in means)
+
+We'll use the standard p-value cutoff of 0.05.
+
+Similiar to our missingness tests, we can view the distribution of # of ingredients in diet and non-diet recipes in a plot.
+
+[graph]
+
+Then, we use a permutation test to shuffle the boolean "diet" column 1000 times and simulate test statistics under the null. We can view the distribution of the simulated test statistics and compare our observed statistic with it to find the p-value.
+
+[graph]
+
+As shown, we get a p-value of 0. Using the cutoff of 0.05, we reject the null hypothesis that there is no difference between the number of ingredients in diet and non-diet recipes.
 
 ---
 
 ## Framing a Prediction Problem
 
-blah
+Now, we can use our dataset to frame a prediction problem. After consideration, I chose the response variable to be predicting the amount of protein in a recipe. Because protein is a numerical variable, we will be using regression as our prediction type.
+
+I chose this variable because protein is a very common nutritional fact that many athletes and gym-goers focus on in terms of choosing their meals, so I felt that predicting protein had some relevance in my own life.
+
+We will be using root mean square error (RMSE) to evaluate our model. Because we are running regression, this metric made the most sense, especially due to the interpretable nature of RMSE. Additionally, RMSE is very robust to outliers, which helps us as there are many outliers in this dataset as explored in the data cleaning section of this project.
 
 ---
 
