@@ -31,7 +31,6 @@ There are 18 columns in the original dataset, but many are not directly relevant
 
 Along the way, we will also create new columns from the existing features to add another layer of analysis.
 
-
 ---
 
 ## Data Cleaning and Exploratory Data Analysis
@@ -52,7 +51,15 @@ Although technically possible, I decided to remove all recipes with calories ove
 
 I also removed all rows with a minutes value of 5000+ minutes (>83 hours). Again, this *could* potentially disqualify recipes with extensive cooking times, but these recipes were mostly outliers or mistakes.
 
-Cleaned dataframe: []
+Cleaned dataframe: 
+
+| name                                 |     id |   minutes | tags                                                                                                                                                                                                                                                                                               |   n_steps |   n_ingredients | nutrition                                     |   mean_rating |   calorie_amt |
+|:-------------------------------------|-------:|----------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------:|----------------:|:----------------------------------------------|--------------:|--------------:|
+| 1 brownies in the world    best ever | 333281 |        40 | ['60-minutes-or-less', 'time-to-make', 'course', 'main-ingredient', 'preparation', 'for-large-groups', 'desserts', 'lunch', 'snacks', 'cookies-and-brownies', 'chocolate', 'bar-cookies', 'brownies', 'number-of-servings']                                                                        |        10 |               9 | [138.4, 10.0, 50.0, 3.0, 3.0, 19.0, 6.0]      |             4 |         138.4 |
+| 1 in canada chocolate chip cookies   | 453467 |        45 | ['60-minutes-or-less', 'time-to-make', 'cuisine', 'preparation', 'north-american', 'for-large-groups', 'canadian', 'british-columbian', 'number-of-servings']                                                                                                                                      |        12 |              11 | [595.1, 46.0, 211.0, 22.0, 13.0, 51.0, 26.0]  |             5 |         595.1 |
+| 412 broccoli casserole               | 306168 |        40 | ['60-minutes-or-less', 'time-to-make', 'course', 'main-ingredient', 'preparation', 'side-dishes', 'vegetables', 'easy', 'beginner-cook', 'broccoli']                                                                                                                                               |         6 |               9 | [194.8, 20.0, 6.0, 32.0, 22.0, 36.0, 3.0]     |             5 |         194.8 |
+| millionaire pound cake               | 286009 |       120 | ['time-to-make', 'course', 'cuisine', 'preparation', 'occasion', 'north-american', 'desserts', 'american', 'southern-united-states', 'dinner-party', 'holiday-event', 'cakes', 'dietary', 'christmas', 'thanksgiving', 'low-sodium', 'low-in-something', 'taste-mood', 'sweet', '4-hours-or-less'] |         7 |               7 | [878.3, 63.0, 326.0, 13.0, 20.0, 123.0, 39.0] |             5 |         878.3 |
+| 2000 meatloaf                        | 475785 |        90 | ['time-to-make', 'course', 'main-ingredient', 'preparation', 'main-dish', 'potatoes', 'vegetables', '4-hours-or-less', 'meatloaf', 'simply-potatoes2']                                                                                                                                             |        17 |              13 | [267.0, 30.0, 12.0, 12.0, 29.0, 48.0, 2.0]    |             5 |         267   |
 
 With the dataset adequately cleaned, we can now move onto exploratory data analysis and observe interesting aggregates.
 
