@@ -194,13 +194,36 @@ We will be using root mean square error (RMSE) to evaluate our model. Because we
 
 ## Baseline Model
 
-blah
+For my rudimentary baseline model, I chose only features that were present in the original dataframe to predict the protein column. These were the columns "minutes", "n_steps", and "n_ingredients". The original dataframe did not have many categorical columns, and thus, all of these columns are quantitative. Because this was just the baseline model, I performed only simple transformations on the features.
+
+1. I applied a square root function on both the "n_steps" and "minutes" column. Because the square root mitigates the impact of outliers, I thought that this would be a simple but effective way of transforming these columns.
+
+2. Next, I applied a Binarizer on the "n_ingredients" column with a threshold of 10. This would divide up the recipes into larger, more complex recipes, and smaller, easier recipes. 
+
+3. After applying the column transformations, I ran a linear regression model and fit it to my training data. After fitting, I tested the model on my testing data and received an RMSE of about 37.75.
+
+RMSE is pretty high, so it is clear that this is not the best model, and we can improve upon this by creating new features and applying other transformations.
+
+This makes logical sense because the columns that I used don't make much sense to have a strong correlation with protein amount, even when applying some transformations. For example, the longer it takes to prepare a recipe does not exactly mean that the amount of protein in that recipe will be higher. We can do a better job picking more relevant features in the next section.
 
 ---
 
 ## Final Model
 
-blah
+Now, we move on to the final model.
+
+We can add a new column from the existing column "tags". One of the tags is called "high-protein". Because we are predicting the actual *amount* of protein in the recipe (not if the recipe has a lot of protein or not), this would be a good column to add to our dataframe to work on this regression.
+
+In this model, I chose the columns "n_ingredients", "calorie_amt", "is_high_protein", and "minutes". The quantitative columns are "n_ingredients", "calorie_amt", and "minutes". The other column "high_protein" is boolean, which is True or False depending on if the recipe is a high protein recipe. 
+
+Already, one of the main improvements of this model is that the features chosen have logical relevance to the amount of protein we are trying to predict in the recipe. For example, higher calorie foods typically have more protein, thus the usage of the "calorie_amt" column. Additionally, with the usage of the "is_high_protein" column, this directly tells us whether we can expect a larger amount of protein or not in the recipe.
+
+Now, onto the transformations themselves.
+
+1. Again, I felt that applying a square root function was an effective way of reducing variance of the data, thus I applied it on the "calorie_amt" column. From a generated KDE plot, there was a clear positive relationship between calories and protein, and among further inspection, the relationship became stronger when I used square rooted calories vs. protein. 
+
+2. 
+
 
 ---
 
