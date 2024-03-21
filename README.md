@@ -69,8 +69,8 @@ We can first view the distribution of calories.
 
 <iframe
   src="assets/calorie_hist.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
 ></iframe>
 
@@ -78,8 +78,8 @@ The distribution has a very apparent right skew, meaning most recipes have lower
 
 <iframe
   src="assets/binned_cal_hist.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
 ></iframe>
 
@@ -91,8 +91,8 @@ To address our initial question of the relationship between # of steps and calor
 
 <iframe
   src="assets/steps_cal_scatter.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
 ></iframe>
 
@@ -102,8 +102,8 @@ Let's create a boolean column called "diet" that categorizes recipes as diet (<=
 
 <iframe
   src="assets/diet_box.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
 ></iframe>
 
@@ -113,8 +113,8 @@ We can also extract protein from the "nutrition" column and then similarly break
 
 <iframe
   src="assets/protein_bin_hist.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
 ></iframe>
 
@@ -152,8 +152,8 @@ From existing columns, however, we can test the missingness of description on a 
 
 <iframe
   src="assets/ingredients_by_missing.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
 ></iframe>
 
@@ -169,19 +169,19 @@ Using a permutation test to shuffle the missingness of the description column 10
 
 <iframe
   src="assets/ks_test.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
 ></iframe>
 
-As shown, we get a p-value of 0, so we reject the null hypothesis that the KS statistic for # of ingredients is about the same between description missing and present. Thus, we can conclude that missingness of description is MAR dependent on the "n_ingredients" column.
+As shown, we get a p-value of 0.007, so we reject the null hypothesis that the KS statistic for # of ingredients is about the same between description missing and present. Thus, we can conclude that missingness of description is MAR dependent on the "n_ingredients" column.
 
 We can also test the missingenss of description on "n_steps", or number of steps in the recipe. We can view the distribution of # of steps when description is missing or present.
 
 <iframe
   src="assets/steps_by_missing.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
 ></iframe>
 
@@ -197,13 +197,12 @@ Again, using a permutation test to shuffle the missingness of the description co
 
 <iframe
   src="assets/permtest_1.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
-  style="border:none; overflow:hidden; display:block; line-height: 0;border: 0;margin: 0; padding: 0;"
 ></iframe>
 
-As shown, we get a p-value of []. Using the standard cutoff of 0.05, we fail to reject the null hypothesis that there is a significant difference between the mean number of steps in recipes with their descriptions missing and the mean number of steps in recipes with their descriptions present. As such, we cannot conclude that the missingness of description is MAR dependent on the "n_steps" column.
+As shown, we get a p-value of 0.096. Using the standard cutoff of 0.05, we fail to reject the null hypothesis that there is a significant difference between the mean number of steps in recipes with their descriptions missing and the mean number of steps in recipes with their descriptions present. As such, we cannot conclude that the missingness of description is MAR dependent on the "n_steps" column.
 
 ---
 
@@ -215,8 +214,8 @@ Similiar to our missingness tests, we can view the distribution of # of ingredie
 
 <iframe
   src="assets/hypo_test_distr.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
 ></iframe>
 
@@ -234,8 +233,8 @@ Then, we use a permutation test to shuffle the boolean "diet" column 1000 times 
 
 <iframe
   src="assets/hypo_test_result.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
 ></iframe>
 
@@ -324,8 +323,8 @@ We'll use a cutoff of 0.01 to determine significance.
 
 <iframe
   src="assets/rmse_test.html"
-  width="1400"
-  height="1000"
+  width="800"
+  height="600"
   frameborder="0"
 ></iframe>
 
