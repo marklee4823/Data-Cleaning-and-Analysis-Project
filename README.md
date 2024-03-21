@@ -69,8 +69,8 @@ We can first view the distribution of calories.
 
 <iframe
   src="assets/calorie_hist.html"
-  width="400"
-  height="400"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
@@ -91,8 +91,8 @@ To address our initial question of the relationship between # of steps and calor
 
 <iframe
   src="assets/steps_cal_scatter.html"
-  width="800"
-  height="600"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
@@ -102,8 +102,8 @@ Let's create a boolean column called "diet" that categorizes recipes as diet (<=
 
 <iframe
   src="assets/diet_box.html"
-  width="800"
-  height="600"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
@@ -113,8 +113,8 @@ We can also extract protein from the "nutrition" column and then similarly break
 
 <iframe
   src="assets/protein_bin_hist.html"
-  width="800"
-  height="600"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
@@ -152,8 +152,8 @@ From existing columns, however, we can test the missingness of description on a 
 
 <iframe
   src="assets/ingredients_by_missing.html"
-  width="800"
-  height="600"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
@@ -169,8 +169,8 @@ Using a permutation test to shuffle the missingness of the description column 10
 
 <iframe
   src="assets/ks_test.html"
-  width="800"
-  height="600"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
@@ -180,8 +180,8 @@ We can also test the missingenss of description on "n_steps", or number of steps
 
 <iframe
   src="assets/steps_by_missing.html"
-  width="800"
-  height="600"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
@@ -197,8 +197,8 @@ Again, using a permutation test to shuffle the missingness of the description co
 
 <iframe
   src="assets/permtest_1.html"
-  width="800"
-  height="600"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
@@ -214,8 +214,8 @@ Similiar to our missingness tests, we can view the distribution of # of ingredie
 
 <iframe
   src="assets/hypo_test_distr.html"
-  width="800"
-  height="600"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
@@ -233,8 +233,8 @@ Then, we use a permutation test to shuffle the boolean "diet" column 1000 times 
 
 <iframe
   src="assets/hypo_test_result.html"
-  width="800"
-  height="600"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
@@ -323,8 +323,8 @@ We'll use a cutoff of 0.01 to determine significance.
 
 <iframe
   src="assets/rmse_test.html"
-  width="800"
-  height="600"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
