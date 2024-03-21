@@ -73,7 +73,6 @@ We can first view the distribution of calories.
   height="300"
   frameborder="0"
 ></iframe>
-
 The distribution has a very apparent right skew, meaning most recipes have lower amounts of calories. It appears that recipes are concentrated below the 1000 calories mark. This isn't very specific, so let's see if we can break down calorie amount further to get a better representation of the data by creating bins.
 
 <iframe
