@@ -69,8 +69,8 @@ We can first view the distribution of calories.
 
 <iframe
   src="assets/calorie_hist.html"
-  width="800"
-  height="600"
+  width="400"
+  height="300"
   frameborder="0"
 ></iframe>
 
