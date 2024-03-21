@@ -189,7 +189,7 @@ We can also test the missingenss of description on "n_steps", or number of steps
   frameborder="0"
 ></iframe>
 
-Because the distributions have similair shapes, we can use difference of means as our test statistic.
+Because the distributions have similiar shapes, we can use difference of means as our test statistic.
 
 Null hypothesis: The mean number of steps in recipes with their description missing is the same as the mean number of steps in recipes with their description present.
 
@@ -334,7 +334,7 @@ We'll use a cutoff of 0.01 to determine significance.
 
 As expected, our p-value is 0 and we can confidently reject the null hypothesis that the model is fair. Thus, our model does not achieve party when evaluated based on RMSE.
 
-There are a couple reasons why we observe the stark difference in RMSE among diet and non-diet recipes. Even though I limited the range of the "calorie_amt" column to 5000 calories (in the data cleaning section of this project) to intentionally remove outliers and/or typos, 5000 was more of an arbitrary threshold rather than a mathamatically proven threshold that minimized the number of outliers in the data. As such, there are probably many more outliers that lie right under the 5000 calorie mark. My overall reasoning here is that values of "calorie_amt" that would be classified as outliers or as typos are much more likely to have similarly outlier-type or typos in other columns as well, like protein. Consequently, the relationship between my chosen features in the final model and protein in non-diet recipes would be weaker. 
+There are a couple reasons why we observe the stark difference in RMSE among diet and non-diet recipes. Even though I limited the range of the "calorie_amt" column to 5000 calories (in the data cleaning section of this project) to intentionally remove outliers and/or typos, 5000 was more of an arbitrary threshold rather than a mathematically proven threshold that minimized the number of outliers in the data. As such, there are probably many more outliers that lie right under the 5000 calorie mark. My overall reasoning here is that values of "calorie_amt" that would be classified as outliers or as typos are much more likely to have similarly outlier-type or typos in other columns as well, like protein. Consequently, the relationship between my chosen features in the final model and protein in non-diet recipes would be weaker. 
 
 So, what does this result mean for us? Possibly non-diet recipes (on this particular dataset) have less reliable nutrition facts. Maybe if we wanted to get the most protein in our recipe, cutting down on the calories and looking at diet recipes may be the right move. 
 
