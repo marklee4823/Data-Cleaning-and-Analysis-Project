@@ -167,6 +167,8 @@ Alternative hypothesis: The KS statistic for # of ingredients in recipes with th
 
 Test statistic: Kolmogorov–Smirnov test statistic
 
+We'll use the standard p-value cutoff of 0.05.
+
 Using a permutation test to shuffle the missingness of the description column 1000 times and simulate test statistics under the null, we can view the distribution of the simulated statistics and compare our observed statistic with it to find the p-value.
 
 <iframe
