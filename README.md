@@ -200,7 +200,7 @@ Again, using a permutation test to shuffle the missingness of the description co
   width="1400"
   height="1000"
   frameborder="0"
-  style="border:none; overflow:hidden; display:block;"
+  style="border:none; overflow:hidden; display:block; line-height: 0;border: 0;margin: 0; padding: 0;"
 ></iframe>
 
 As shown, we get a p-value of []. Using the standard cutoff of 0.05, we fail to reject the null hypothesis that there is a significant difference between the mean number of steps in recipes with their descriptions missing and the mean number of steps in recipes with their descriptions present. As such, we cannot conclude that the missingness of description is MAR dependent on the "n_steps" column.
