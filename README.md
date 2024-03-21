@@ -107,6 +107,8 @@ Let's create a boolean column called "diet" that categorizes recipes as diet (<=
   frameborder="0"
 ></iframe>
 
+As shown, non-diet recipes appear to have more steps, on average.
+
 ### Interesting Aggregates
 
 We can also extract protein from the "nutrition" column and then similarly break it down into bins if we wanted to observe the relationship between protein and calories. We can see the distribution of binned protein is still skewed right, but the recipes seem to be more distributed throughout the bins instead of the vast majority being in only one or two bins.
