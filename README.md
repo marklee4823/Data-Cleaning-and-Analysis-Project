@@ -78,8 +78,8 @@ The distribution has a very apparent right skew, meaning most recipes have lower
 
 <iframe
   src="assets/binned_cal_hist.html"
-  width="800"
-  height="600"
+  width="1400"
+  height="1000"
   frameborder="0"
 ></iframe>
 
